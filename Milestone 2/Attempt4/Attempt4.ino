@@ -21,11 +21,11 @@ void setup() {
 }
 
 unsigned int sensor_vals[6];
-int LEFT_SPEED = 300;
+int LEFT_SPEED = 400;
 int RIGHT_SPEED = 0.96 * LEFT_SPEED;
 double PROPORTION_GAIN = 0.2;
 double DERIVATIVE_GAIN = 3;
-double INTEGRAL_GAIN = 0;
+double INTEGRAL_GAIN = 0.001;
 int last_error = 0;
 int total_error = 0;
 void loop() {
@@ -33,7 +33,7 @@ void loop() {
   int error = line_position - 2500;
   int error_change = error - last_error;
   int left_speed = LEFT_SPEED + PROPORTION_GAIN * error + DERIVATIVE_GAIN * error_change + INTEGRAL_GAIN * total_error;
-  int right_speed = RIGHT_SPEED + -PROPORTION_GAIN * error + -DERIVATIVE_GAIN * error_change + INTEGRAL_GAIN * total_error;
+  int right_speed = RIGHT_SPEED + -PROPORTION_GAIN * error + -DERIVATIVE_GAIN * error_change + -INTEGRAL_GAIN * total_error;
   last_error = error;
   total_error = total_error + error;
   motors.setSpeeds(left_speed, right_speed);

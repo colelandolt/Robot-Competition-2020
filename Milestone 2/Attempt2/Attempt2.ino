@@ -22,13 +22,13 @@ void setup() {
 
 const int LEFT_SPEED = 200;
 const int RIGHT_SPEED = 0.96 * LEFT_SPEED;
-double PROPORTION_GAIN = 0.02;
+double PROPORTION_GAIN = 0.2;
 unsigned int sensor_vals[6];
 
 void loop() {
   int line_position = linesensors.readLine(sensor_vals);
   int error = line_position - 2500;
-  int left_speed = BASE_SPEED + PROPORTION_GAIN * error;
-  int right_speed = BASE_SPEED + -PROPORTION_GAIN * error;
+  int left_speed = LEFT_SPEED + PROPORTION_GAIN * error;
+  int right_speed = RIGHT_SPEED + -PROPORTION_GAIN * error;
   motors.setSpeeds(left_speed, right_speed);
 }

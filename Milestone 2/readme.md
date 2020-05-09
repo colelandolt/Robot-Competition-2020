@@ -24,4 +24,10 @@ for the entire length of the winding path.
 I then included Derivative Control in the Robot's calculations.
 
 Because the error was improved even more by the inclusion of this extra parameter,
-I was able to increase the speed of the robot and still accurately follow the line. 
+I was able to increase the speed of the robot and still accurately follow the line.
+
+## Attempt 4
+
+To instanstiate full PID Control, I included an integral term that summed
+the total error in order to determine whether the robot was spending more time
+on one side of the line than the other.
