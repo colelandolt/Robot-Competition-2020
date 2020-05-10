@@ -8,12 +8,12 @@ ZumoBuzzer buzzer;
 void setup() {
   int i;
   int spin_direction = 1;
-  motors.setSpeeds(80*spin_direction, -80*spin_direction);
+  motors.setSpeeds(100*spin_direction, -96*spin_direction);
   for(i = 0; i<100; i++){
     linesensors.calibrate();
     if(i%50 == 25){ // every 50 loops, starting on loop 25...
       spin_direction = -spin_direction;
-      motors.setSpeeds(80*spin_direction, -80*spin_direction);
+      motors.setSpeeds(100*spin_direction, -96*spin_direction);
     }
     delay(20);
   }
@@ -32,7 +32,7 @@ int turn_counter = 0;
 void loop() {
   line_position = linesensors.readLine(sensor_vals);
   if(sensor_vals[0] > THRESHOLD && sensor_vals[5] > THRESHOLD){
-    solved(); 
+    solved();
   }else if(sensor_vals[0] > THRESHOLD && sensor_vals[1] > THRESHOLD){
     path[turn_counter] = 'L';
     turn_counter++;
@@ -51,8 +51,8 @@ void turn_left() {
   linesensors.read(sensor_vals);
   while(sensor_vals[0] > THRESHOLD && sensor_vals[1] > THRESHOLD){
       linesensors.read(sensor_vals);
-  } 
-  delay(115);  
+  }
+  delay(115);
 }
 
 void turn_right() {
@@ -61,7 +61,7 @@ void turn_right() {
   while(sensor_vals[4] > THRESHOLD && sensor_vals[5] > THRESHOLD){
       linesensors.read(sensor_vals);
   }
-  delay(115);  
+  delay(115);
 }
 
 double PROPORTION_GAIN = 0.2;
